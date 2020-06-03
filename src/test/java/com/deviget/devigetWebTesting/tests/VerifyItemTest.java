@@ -21,8 +21,8 @@ public class VerifyItemTest extends TestBase {
         WebDriverWait wait = new WebDriverWait(driver, 15);
         Object[] windows;
 
-        // Close pop up
-        user.closeNewUserContainer();
+        // Clicking on get Coupons
+        user.clickOnGetCoupons();
         // Search item
         user.searchItem(searchCriteria);
         // Close pop up
