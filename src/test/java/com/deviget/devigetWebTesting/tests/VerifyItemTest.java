@@ -43,6 +43,7 @@ public class VerifyItemTest extends TestBase {
         ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, 0)");
         WebElement relatedAd = user.getAd(item);
         if (relatedAd.findElement(user.aItemTitle).getText().toLowerCase().contains(searchCriteria)) {
+            System.out.println("This is the second iphone related ad: " + relatedAd.findElement(user.aItemTitle).getText());
             relatedAd.findElement(user.aItemTitle).click();
             windows = driver.getWindowHandles().toArray();
             driver.switchTo().window(windows[1].toString());
