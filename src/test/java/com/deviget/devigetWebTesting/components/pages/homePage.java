@@ -1,16 +1,17 @@
 package com.deviget.devigetWebTesting.components.pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.WebElement;
 
 public class homePage extends PageBase{
-    private By inputSearchItem = By.id("search-key");
-    private By inputSearchButton = By.className("search-button");
-    public By itemsList = By.xpath("//ul[@class='list-items']/li");
-    private By inputGoToPage = By.xpath("//span[@class='next-input next-large']/input");
-    private By spanButtonGo = By.className("jump-btn");
+    public By inputSearchItem = By.id("search-key");
+    public By inputSearchButton = By.className("search-button");
+    public By inputGoToPage = By.xpath("//span[@class='next-input next-large']/input");
+    public By spanButtonGo = By.className("jump-btn");
+    public By divStarLoadingTip = By.className("next-overlay-inner next-loading-tip");
+    public By aItemTitle = By.xpath(".//a[@class='item-title']");
+    public By buttonBuyNow = By.xpath("//span[@class='buy-now-wrap']/button[contains(@class,'buynow')]");
 
     public homePage(WebDriver driver) {
         super(driver);
@@ -19,12 +20,11 @@ public class homePage extends PageBase{
         driver.findElement(inputSearchItem).sendKeys(text);
         driver.findElement(inputSearchButton).click();
     }
-    public void goToPage(String pageNumber) {
-        Actions actions = new Actions(driver);
-        ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
-        actions.moveToElement(driver.findElement(inputGoToPage));
-        driver.findElement(inputGoToPage).sendKeys(pageNumber);
-        driver.findElement(spanButtonGo).click();
+    public WebElement getPage(String pageNumber) {
+        return driver.findElement(By.xpath("//button[contains(@aria-label,'" + pageNumber + "')]"));
+    }
+    public WebElement getAd(int i) {
+        return driver.findElement(By.xpath("//ul[@class='list-items']/li[" + i + "]"));
     }
 }
 
